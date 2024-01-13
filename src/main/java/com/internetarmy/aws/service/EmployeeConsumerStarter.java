@@ -9,7 +9,7 @@ import com.internetarmy.aws.service.impl.EmployeeConsumer;
 import com.internetarmy.aws.util.AWSPropertiesConstants;
 
 @Component
-@ConditionalOnProperty(value = AWSPropertiesConstants.IS_SQS_ENABLE, havingValue = "true", matchIfMissing = false)
+@ConditionalOnProperty(value = AWSPropertiesConstants.IS_SQS_ENABLE_ACTUAL, havingValue = "true", matchIfMissing = false)
 public class EmployeeConsumerStarter implements CommandLineRunner{
 	
 	@Autowired
@@ -17,6 +17,7 @@ public class EmployeeConsumerStarter implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
+		System.out.println("Starting");
 		consumer.readMessages();
 		
 	}

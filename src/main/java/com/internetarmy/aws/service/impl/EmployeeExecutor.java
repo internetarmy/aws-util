@@ -16,7 +16,7 @@ import com.internetarmy.aws.util.AWSPropertiesConstants;
 import com.internetarmy.aws.util.Executor;
 
 @Service
-@ConditionalOnProperty(value = AWSPropertiesConstants.IS_SQS_ENABLE, havingValue = "true", matchIfMissing = false)
+@ConditionalOnProperty(value = AWSPropertiesConstants.IS_SQS_ENABLE_ACTUAL, havingValue = "true", matchIfMissing = false)
 public class EmployeeExecutor implements Executor{
 	
 	private static final Logger log = LoggerFactory.getLogger(EmployeeService.class);

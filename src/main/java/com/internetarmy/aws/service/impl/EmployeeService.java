@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.internetarmy.aws.model.Employee;
 import com.internetarmy.aws.repo.EmployeeRepo;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class EmployeeService {
 	
@@ -18,6 +20,7 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeRepo empRepo;
 	
+	@Transactional
 	public Employee saveEmployee(Employee emp) {
 		return empRepo.saveEmployee(emp);
 	}
