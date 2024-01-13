@@ -4,12 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import com.internetarmy.aws.util.AWSPropertiesConstants;
 import com.internetarmy.aws.util.CoreUtilities;
 
 @Service
+@ConditionalOnProperty(value = AWSPropertiesConstants.IS_SQS_ENABLE, havingValue = "true", matchIfMissing = false)
 public class EmployeeConsumer {
 
 	private static final Logger log = LoggerFactory.getLogger(EmployeeConsumer.class);
@@ -18,7 +20,7 @@ public class EmployeeConsumer {
 	private String employeeQueue;
 	
 	@Autowired
-	private EmployeeService executor;
+	private EmployeeExecutor executor;
 	
 	@Autowired
 	private SQSService sqsConnection;

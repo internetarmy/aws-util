@@ -30,10 +30,10 @@ public class EmployeeController {
 		return service.findEmployee(id, name);
 	}
 	
-	@GetMapping("/startConsumer")
-	public String startConsumer() {
-		service.startConsumer();
-		return "Started";
-	}
+//	@GetMapping("/startConsumer")
+//	public String startConsumer() {
+//		service.startConsumer();
+//		return "Started";
+//	}
 
 }
