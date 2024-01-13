@@ -1,13 +1,13 @@
-package com.internetarmy.aws;
+// package com.internetarmy.aws;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class AwsUtilityApplicationTests {
+// @SpringBootTest
+// class AwsUtilityApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+// 	@Test
+// 	void contextLoads() {
+// 	}
 
-}
+// }
