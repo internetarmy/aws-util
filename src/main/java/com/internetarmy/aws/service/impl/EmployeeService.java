@@ -22,6 +22,9 @@ public class EmployeeService implements Executor{
 	private static final Logger log = LoggerFactory.getLogger(EmployeeService.class);
 	
 	@Autowired
+	private EmployeeConsumer consumer;
+	
+	@Autowired
 	private ObjectMapper mapper;
 	
 	@Autowired
@@ -33,6 +36,10 @@ public class EmployeeService implements Executor{
 	
 	public List<Employee> findEmployee(Integer id, String name){
 		return empRepo.findAllEmployees(id, name);
+	}
+	
+	public void startConsumer() {
+		consumer.readMessages();
 	}
 	
 	@Override

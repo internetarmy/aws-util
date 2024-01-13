@@ -29,5 +29,11 @@ public class EmployeeController {
 	public List<Employee> findAllEmpoyees(@RequestParam(required = false) Integer id, @RequestParam(required = false) String name){
 		return service.findEmployee(id, name);
 	}
+	
+	@GetMapping("/startConsumer")
+	public String startConsumer() {
+		service.startConsumer();
+		return "Started";
+	}
 
 }
