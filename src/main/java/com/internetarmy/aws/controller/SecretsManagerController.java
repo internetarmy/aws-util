@@ -13,9 +13,14 @@ public class SecretsManagerController {
 	@Autowired
 	private EdxServiceImpl secretsService;
 	
-	@GetMapping("getSecrets")
+	@GetMapping("/getSecrets")
 	public String getSecrets(@RequestParam String secretName) {
 		return secretsService.getSecretValue(secretName);
+	}
+	
+	@GetMapping("/addSecretValue")
+	public String addSecretValue(@RequestParam String secretName, @RequestParam String key, @RequestParam String value) {
+		return secretsService.putSecret(secretName, key, value);
 	}
 
 }

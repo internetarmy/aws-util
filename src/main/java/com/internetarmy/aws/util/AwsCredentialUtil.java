@@ -8,7 +8,7 @@ public class AwsCredentialUtil {
 
 	public static AwsCredentialsProvider getCredentialProvider(boolean isOnDevMachine, String profile) {
 		if(!isOnDevMachine) {
-			 return InstanceProfileCredentialsProvider.create();
+			return InstanceProfileCredentialsProvider.create();
 		} else if(profile != null && !profile.isEmpty()) {
 			return ProfileCredentialsProvider.create(profile);
 		}

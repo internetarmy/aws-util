@@ -1,11 +1,13 @@
 package com.internetarmy.aws.service.impl;
 
+import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 
 import org.awaitility.Awaitility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.internetarmy.aws.service.EdxService;
 
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerAsyncClient;
@@ -19,6 +21,9 @@ public class EdxServiceImpl implements EdxService {
 	
 	@Autowired
 	private SecretsManagerAsyncClient secretManager;
+	
+	@Autowired
+	private ObjectMapper mapper;
 	
 	@Override
 	public String getSecretValue(String secretName) {
@@ -35,12 +40,13 @@ public class EdxServiceImpl implements EdxService {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public String putSecret(String secretName, String key, String value) {
 		try {
 			String secretValue = getSecretValue(secretName);
-//			HashMap<String, String> map = (HashMap<String, String>)mapper.readValue(secretValue, HashMap.class);
-//			map.put(key, value);
-			String newSecret = secretValue+String.format(", \"%s\" : \"%s\"", key, value);
+			HashMap<String, String> map = (HashMap<String, String>)mapper.readValue(secretValue, HashMap.class);
+			map.put(key, value);
+			String newSecret = mapper.writeValueAsString(map);
 			UpdateSecretRequest updateRequest = UpdateSecretRequest.builder().secretId(secretName).secretString(newSecret).build();
 			CompletableFuture<UpdateSecretResponse> futureResponse = secretManager.updateSecret(updateRequest);
 			Awaitility.await().until(() -> futureResponse.isDone());
