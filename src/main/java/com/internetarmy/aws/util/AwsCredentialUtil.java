@@ -13,7 +13,6 @@ public class AwsCredentialUtil {
 			return ProfileCredentialsProvider.create(profile);
 		}
 		throw new RuntimeException("Please provide profile or run it on AWS Env.");
-		
 	}
 	
 }
