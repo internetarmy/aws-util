@@ -25,5 +25,9 @@ public class AwsOldCredentialUtils {
 			throw new RuntimeException(message);
 		}
 	}
+	
+	public static InstanceProfileCredentialsProvider getEc2CredentialsManager() {
+		return InstanceProfileCredentialsProvider.getInstance();
+	}
 
 }

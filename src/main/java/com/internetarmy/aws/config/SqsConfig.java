@@ -28,6 +28,9 @@ public class SqsConfig {
 	@Value(AWSPropertiesConstants.IS_ON_POD)
 	private boolean isOnPod;
 	
+	@Value(AWSPropertiesConstants.IS_ON_EC2)
+	private boolean isOnEc2;
+	
 	@Value(AWSPropertiesConstants.REGION)
 	private String region;
 	
@@ -41,7 +44,11 @@ public class SqsConfig {
 			return AmazonSQSAsyncClientBuilder.standard().withRegion(region).build();
 		}
 		log.debug("CredentialsProvider for SQS is obtained using either EC2Role/CustomerProfile.");
-		AWSCredentialsProvider credsProvider = AwsOldCredentialUtils.getCredentialsProvider(!isOnPod, profile);
+		AWSCredentialsProvider credsProvider = null;
+		if(isOnEc2) {
+			credsProvider = AwsOldCredentialUtils.getEc2CredentialsManager();
+		}
+		credsProvider = AwsOldCredentialUtils.getCredentialsProvider(!isOnPod, profile);
 		AmazonSQSAsyncClientBuilder clientBuilder = AmazonSQSAsyncClientBuilder.standard();
 			clientBuilder.withRegion(region);
 		return clientBuilder

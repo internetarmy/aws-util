@@ -15,4 +15,8 @@ public class AwsCredentialUtil {
 		throw new RuntimeException("Please provide profile or run it on AWS Env.");
 	}
 	
+	public static InstanceProfileCredentialsProvider getEc2CredentialsManager() {
+		return InstanceProfileCredentialsProvider.create();
+	}
+	
 }
