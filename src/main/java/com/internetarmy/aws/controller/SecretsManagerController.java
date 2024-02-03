@@ -18,6 +18,12 @@ public class SecretsManagerController {
 		return secretsService.getSecretValue(secretName);
 	}
 	
+	@GetMapping("/health")
+	public String healthCheck() {
+		return "{\"status\":\"up\"}";
+	}
+	
+	
 	@GetMapping("/addSecretValue")
 	public String addSecretValue(@RequestParam String secretName, @RequestParam String key, @RequestParam String value) {
 		return secretsService.putSecret(secretName, key, value);

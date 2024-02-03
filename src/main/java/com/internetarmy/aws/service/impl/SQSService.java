@@ -15,6 +15,7 @@ import org.awaitility.core.ConditionTimeoutException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.services.sqs.AmazonSQSAsync;
@@ -24,10 +25,12 @@ import com.amazonaws.services.sqs.model.SendMessageBatchResult;
 import com.amazonaws.services.sqs.model.SendMessageRequest;
 import com.amazonaws.services.sqs.model.SendMessageResult;
 import com.internetarmy.aws.config.SQSListner;
+import com.internetarmy.aws.util.AWSPropertiesConstants;
 import com.internetarmy.aws.util.CoreUtilities;
 import com.internetarmy.aws.util.Executor;
 
 @Service
+@ConditionalOnProperty(name = AWSPropertiesConstants.IS_SQS_ENABLE_ACTUAL, matchIfMissing = false)
 public class SQSService {
 
 	private Logger log = LoggerFactory.getLogger(SQSService.class);
