@@ -1,13 +1,13 @@
-package com.internetarmy.aws;
+package com.jenkins.artifact;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AwsUtilityApplication {
+public class Java11ArtifactApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AwsUtilityApplication.class, args);
+		SpringApplication.run(Java11ArtifactApplication.class, args);
 	}
 
 }
